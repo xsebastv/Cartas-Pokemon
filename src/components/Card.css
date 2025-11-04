@@ -32,8 +32,8 @@
   font-size:12px; font-weight:800; letter-spacing:.2px; line-height:1; 
   box-shadow: 0 3px 10px rgba(0,0,0,.22), 0 0 0 1px rgba(255,255,255,.06) inset;
 }
-.card-actions{ display:grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap:8px; }
-.card-actions .btn{ min-width: 0; text-align:center }
+.card-actions{ display:flex; gap:8px; justify-content:flex-end; flex-wrap:wrap }
+.card-actions .btn{ text-align:center }
 .card:hover{ transform: translateY(-2px); transition: transform .15s ease; }
 
 /* Animación de volteo */

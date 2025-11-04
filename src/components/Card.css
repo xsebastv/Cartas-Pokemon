@@ -1,0 +1,43 @@
+/* Card style inspired by Jason Chan CodePen; reimplemented */
+.card{
+  position:relative; z-index:0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px; overflow:hidden; display:flex; flex-direction:column;
+  box-shadow: 0 8px 18px rgba(0,0,0,.22);
+  perspective: 1000px; /* enable 3D */
+  height: 400px; /* a bit taller to acomodar mejor el contenido */
+}
+.card-media{
+  position:relative; height: 200px; display:flex; align-items:center; justify-content:center; overflow:hidden;
+}
+.card-img{ width:auto; height:100%; max-width:100%; object-fit: contain; image-rendering:auto; display:block }
+.card-initials{
+  width:72px; height:72px; border-radius: 16px; display:grid; place-items:center; font-weight:900; font-size:24px; color:#0b1320;
+  background: var(--brand-yellow);
+  box-shadow: inset 0 1px rgba(255,255,255,.35), 0 8px 20px rgba(0,0,0,.25);
+}
+.card-body{ padding: 14px; display:grid; grid-template-rows: auto auto 1fr auto; gap:8px; }
+.card-head{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.card-title{ margin:0; font-size:18px; font-family: var(--font-display); letter-spacing:.2px }
+.card-meta{ display:flex; gap:8px; color:var(--brand-muted); font-size:13px; }
+.card-desc{ margin:4px 0 0; color: var(--brand-text); opacity:.9; font-size: 13px; line-height:1.35; display:-webkit-box; -webkit-line-clamp:3; line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; min-height: calc(1em * 3 * 1.35); }
+.card-foot{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:8px; }
+.chip{ background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.16); color:#fff; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700 }
+.chip-id{ 
+  display:inline-grid; place-items:center; 
+  min-width:36px; height:36px; padding:0 10px; border-radius:999px; 
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); 
+  border:1px solid rgba(255,255,255,.16); color:#fff; 
+  font-size:12px; font-weight:800; letter-spacing:.2px; line-height:1; 
+  box-shadow: 0 3px 10px rgba(0,0,0,.22), 0 0 0 1px rgba(255,255,255,.06) inset;
+}
+.card-actions{ display:flex; justify-content:flex-end; }
+.card-actions .btn{ min-width: 110px; text-align:center }
+.card:hover{ transform: translateY(-2px); transition: transform .15s ease; }
+
+/* Flip animation */
+.flip-inner{ position:relative; width:100%; height:100%; transform-style: preserve-3d; transition: transform 1.6s cubic-bezier(.22,.61,.36,1); }
+.flip-front, .flip-back{ position:absolute; inset:0; display:flex; flex-direction:column; -webkit-backface-visibility:hidden; backface-visibility:hidden; }
+.flip-back{ transform: rotateY(180deg); }
+.card:hover .flip-inner{ transform: rotateY(180deg); }

@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Poppins:wght@400;600;700&display=swap');
+
+:root{
+  /* Clean, readable Pokémon-inspired palette */
+  --brand-bg:#0b1224; /* deep navy */
+  --brand-surface:#131a2c; /* panel */
+  --brand-surface-2:#182038; /* header panel */
+  --brand-text:#f3f6ff; /* near white */
+  --brand-muted:#c2cbe6; /* muted text */
+  --brand-blue:#3b4cca; /* Pokémon blue */
+  --brand-red:#e3350d; /* Poké red */
+  --brand-yellow:#ffcb05; /* Pikachu yellow */
+  --accent: var(--brand-blue);
+  --danger:#ff6b6b;
+  --ok:#43d17a;
+
+  /* Typography */
+  --font-display: 'Baloo 2', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial;
+  --font-body: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial;
+}
+
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  /* Simpler background: subtle gradient only */
+  background:
+    radial-gradient(900px 600px at 50% -20%, rgba(255,255,255,.06) 0%, transparent 60%),
+    radial-gradient(400px 400px at 95% 20%, rgba(227,53,13,.12), transparent 65%),
+    radial-gradient(360px 360px at 5% 85%, rgba(59,76,202,.12), transparent 65%),
+    linear-gradient(180deg, var(--brand-bg), #0a1122 60%);
+  color:var(--brand-text);
+  font-family: var(--font-body);
+}
+
+.container{
+  max-width:1200px; margin:0 auto; padding:24px;
+}
+
+h1{
+  font-weight:800; letter-spacing:0.5px; margin: 16px 0 8px; font-family: var(--font-display);
+}
+.title, h2, h3{ font-family: var(--font-display); }
+.subtitle{ color:var(--brand-muted); margin:0 0 24px; }
+
+.grid{
+  display:grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap:16px;
+}
+
+.btn{
+  appearance:none; border:0; padding:10px 16px; border-radius:999px; cursor:pointer; font-weight:800; letter-spacing:.3px;
+  color:#fff; background: linear-gradient(180deg, color-mix(in oklab, var(--brand-blue) 88%, #fff), var(--brand-blue));
+  box-shadow: 0 8px 18px rgba(0,0,0,.24), 0 0 0 1px rgba(255,255,255,.06) inset;
+  transition: filter .12s ease, background .12s ease, box-shadow .12s ease;
+  min-height: 38px; white-space: nowrap;
+}
+.btn.sm{ min-height:32px; padding:8px 12px; font-size:13px }
+.btn:hover{ filter: brightness(1.05); }
+.btn:active{ filter: brightness(.95); }
+.btn:focus-visible{ outline:2px solid color-mix(in oklab, var(--brand-blue), #fff 25%); outline-offset:2px }
+.btn.is-active{ box-shadow: 0 0 0 2px color-mix(in oklab, var(--brand-blue), #fff 25%) inset, 0 6px 16px rgba(0,0,0,.25) }
+
+.badge{ display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border-radius:999px; font-size:12px; background:var(--brand-surface-2); color:var(--brand-text); }
+.badge.ok{ background: #0d2a1d; color:#a6f3c0; }
+.badge.warn{ background: #2a0d0d; color:#f3a6a6; }
+
+.header{
+  display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+}
+.header .subtitle{ margin-bottom: 12px }
+.header .filters{ display:flex; gap:8px; flex-wrap:wrap }
+
+/* App header */
+.app-header{ position:sticky; top:0; z-index:30; background:linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.12)), var(--brand-surface-2); border-bottom:1px solid rgba(255,255,255,.08); backdrop-filter: blur(8px); box-shadow: 0 10px 24px rgba(0,0,0,.25); }
+.header-inner{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 24px }
+.brand{ display:flex; align-items:center; gap:10px }
+.brand-icon{ width:32px; height:32px; display:grid; place-items:center }
+.brand-text{ display:flex; align-items:baseline; gap:10px }
+.brand-text .title{ font-weight:900; letter-spacing:.4px }
+.wordmark{ color: var(--brand-yellow); font-weight:900; letter-spacing:.6px }
+.author-chip{ font-size:12px; padding:4px 8px; border-radius:999px; background:rgba(255,255,255,.08); color:var(--brand-muted); border:1px solid rgba(255,255,255,.1) }
+.toolbar{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:flex-end }
+.counters{ display:flex; align-items:center; gap:8px; flex-wrap:wrap }
+.chip{ display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; font-size:12px; background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.1); box-shadow: 0 2px 8px rgba(0,0,0,.18) }
+.chip svg{ opacity:.85 }
+.search-wrap{ position:relative }
+.suggestions{ position:absolute; left:0; right:0; margin-top:8px; background:var(--brand-surface); border:1px solid rgba(255,255,255,.08); border-radius:8px; padding:6px; max-height:240px; overflow:auto; box-shadow:0 10px 24px rgba(0,0,0,.25) }
+.suggestion{ padding:6px 8px; border-radius:6px; cursor:pointer }
+.suggestion:hover{ background:rgba(255,255,255,.06) }
+
+.header-search{ display:flex; justify-content:center; padding:10px 0 }
+.search-wide{ width:min(680px, 100%) }
+
+.header-counters{ display:flex; justify-content:center; padding:6px 0 10px }
+.header-counters .counters{ justify-content:center }
+
+.header-filters{ display:flex; justify-content:center; padding:8px 0 10px }
+.header-filters .filters{ display:flex; gap:8px; flex-wrap:wrap; justify-content:center }
+
+.accent-bar{ height:3px; background: linear-gradient(90deg, var(--brand-red), var(--brand-yellow) 40%, var(--brand-blue)); border-bottom:1px solid rgba(0,0,0,.25) }
+
+.search{
+  display:flex; gap:8px; align-items:center; background:var(--brand-surface); padding:8px 12px; border-radius:12px;
+  border:1px solid rgba(255,255,255,0.06)
+}
+.search input{ background:transparent; outline:none; border:0; color:var(--brand-text); min-width:200px; }
+.search .icon-btn{ width:28px; height:28px; display:grid; place-items:center; border-radius:999px; border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.06); color:var(--brand-text); cursor:pointer }
+.search .icon-btn:hover{ background:rgba(255,255,255,.1) }
+.search .go-btn{ margin-left:auto }
+.searchbar{ position:relative }
+.searchbar .suggestions{ z-index: 5 }
+
+@media (max-width: 720px){
+  .container{ padding:16px }
+  .search input{ min-width: 140px }
+}
+
+/* Redesigned Header */
+.site-header{ position:sticky; top:0; z-index:30; background: radial-gradient(1200px 400px at 50% -30%, rgba(255,255,255,.08), rgba(255,255,255,0) 60%), linear-gradient(180deg, var(--brand-surface-2), rgba(16,24,44, .92)); border-bottom:1px solid rgba(255,255,255,.08); box-shadow: 0 10px 24px rgba(0,0,0,.25); backdrop-filter: blur(8px) }
+.nav{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 24px }
+.brand{ display:flex; align-items:center; gap:10px }
+.brand .logo{ width:32px; height:32px; display:grid; place-items:center }
+.brand .wordmark{ font-weight:900; letter-spacing:.6px; color: var(--brand-yellow) }
+.nav-right{ display:flex; align-items:center; gap:8px; flex-wrap:wrap }
+.badge{ display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; font-size:12px; background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.1); box-shadow: 0 2px 8px rgba(0,0,0,.18) }
+.badge svg{ opacity:.85 }
+.hero{ display:grid; gap:12px; justify-items:center; padding:8px 24px 14px }
+.tagline{ margin:4px 0 4px; color:var(--brand-muted) }
+.searchbar{ position:relative; width:min(720px, 100%) }
+.search{ display:flex; gap:8px; align-items:center; background:var(--brand-surface); padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,0.08) }
+.search input{ background:transparent; outline:none; border:0; color:var(--brand-text); width:100% }
+.suggestions{ position:absolute; left:0; right:0; margin-top:8px; background:var(--brand-surface); border:1px solid rgba(255,255,255,.08); border-radius:8px; padding:6px; max-height:240px; overflow:auto; box-shadow:0 10px 24px rgba(0,0,0,.25) }
+.suggestion{ padding:6px 8px; border-radius:6px; cursor:pointer }
+.suggestion:hover{ background:rgba(255,255,255,.06) }
+.segmented{ display:flex; gap:6px; background: rgba(255,255,255,.06); padding:4px; border-radius:999px; border:1px solid rgba(255,255,255,.1) }
+.seg{ appearance:none; background:transparent; color:var(--brand-text); padding:8px 12px; border-radius:999px; border:0; cursor:pointer; font-weight:700 }
+.seg.active{ background: var(--brand-blue); box-shadow: 0 4px 12px rgba(0,0,0,.24) }
+.meta{ display:flex; gap:12px; color:var(--brand-muted); font-size:12px }
+.header-watermark{ pointer-events:none; position:absolute; inset:0; background: radial-gradient(300px 300px at 95% 20%, rgba(227,53,13,.25), rgba(227,53,13,0) 60%), radial-gradient(220px 220px at 5% 80%, rgba(59,76,202,.2), rgba(59,76,202,0) 60%) }
+
+/* Compact header when scrolling */
+.site-header.is-compact .hero{ display:none }
+.site-header.is-compact .nav{ padding:6px 18px }
+.site-header.is-compact .brand .logo{ width:26px; height:26px }
+.site-header.is-compact .brand .wordmark{ font-size: 18px; letter-spacing:.4px }
+
+/* Spacing between sticky header and first content container */
+.site-header + .container{ margin-top: 10px }
+@media (min-width: 720px){
+  .site-header + .container{ margin-top: 14px }
+}
+
+/* Make counters a touch tighter in compact mode */
+.site-header.is-compact .badge{ padding:4px 8px; font-size:11px }

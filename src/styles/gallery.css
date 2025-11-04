@@ -1,0 +1,32 @@
+/* Shelf-style comic gallery layout inspired by Andrii Rodzyk. Reimplemented. */
+
+.shelf{
+  --col-min: 240px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--col-min), 1fr));
+  gap: 22px 18px;
+  align-items: start;
+}
+
+/* Slight random rotation pattern using nth-child */
+.shelf > .card{ --deg: -0.6deg; transform: rotate(var(--deg)); transition: transform .2s ease; }
+.shelf > .card:nth-child(2n){ --deg: -0.8deg }
+.shelf > .card:nth-child(2n + 1){ --deg: -0.6deg }
+.shelf > .card:nth-child(3n){ --deg: 0.6deg }
+.shelf > .card:nth-child(4n + 2){ --deg: -0.75deg }
+.shelf > .card:nth-child(5n){ --deg: 0.25deg }
+.shelf > .card:nth-child(6n + 3){ --deg: -0.3deg }
+.shelf > .card:nth-child(7n){ --deg: 0.9deg }
+
+/* On hover, straighten slightly */
+.shelf > .card:hover{ transform: rotate(0deg) translateY(-2px) }
+
+/* Use an average color variable per card to tint shadow/glow */
+.shelf > .card{
+  --average-color: #7ac74c; /* default grass-like */
+  box-shadow:
+    0 12px 28px rgba(0,0,0,.35),
+    0 0 0 1px rgba(255,255,255,.06),
+    0 6px 18px color-mix(in oklab, var(--average-color) 35%, transparent),
+    0 0 0 2px color-mix(in oklab, var(--brand-blue) 14%, transparent) inset;
+}

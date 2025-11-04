@@ -22,7 +22,7 @@
 .card-title{ margin:0; font-size:18px; font-family: var(--font-display); letter-spacing:.2px }
 .card-meta{ display:flex; gap:8px; color:var(--brand-muted); font-size:13px; }
 .card-desc{ margin:4px 0 0; color: var(--brand-text); opacity:.9; font-size: 13px; line-height:1.35; display:-webkit-box; -webkit-line-clamp:3; line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; min-height: calc(1em * 3 * 1.35); }
-.card-foot{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:8px; }
+.card-foot{ display:grid; grid-template-columns: auto 1fr; align-items:center; gap:8px; margin-top:8px; min-height: 44px; }
 .chip{ background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.16); color:#fff; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700 }
 .chip-id{ 
   display:inline-grid; place-items:center; 
@@ -32,8 +32,8 @@
   font-size:12px; font-weight:800; letter-spacing:.2px; line-height:1; 
   box-shadow: 0 3px 10px rgba(0,0,0,.22), 0 0 0 1px rgba(255,255,255,.06) inset;
 }
-.card-actions{ display:flex; justify-content:flex-end; }
-.card-actions .btn{ min-width: 110px; text-align:center }
+.card-actions{ display:grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap:8px; }
+.card-actions .btn{ min-width: 0; text-align:center }
 .card:hover{ transform: translateY(-2px); transition: transform .15s ease; }
 
 /* Animación de volteo */

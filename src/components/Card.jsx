@@ -104,7 +104,7 @@ export default function Card({ character, status, onInvoke, onUninvoke, onUncapt
             </header>
             <div className="card-meta"><span>{types?.length ? types.join(', ') : '—'}</span></div>
             {description && <p className="card-desc">{truncate(description, 120)}</p>}
-            <div className="card-foot" style={{justifyContent:'space-between'}}>
+            <div className="card-foot">
               <span className="chip-id" aria-label={`ID ${character?.id}`} title={`ID ${character?.id}`}>#{character?.id}</span>
               <div className="card-actions">
                 {status === 'Capturado' ? (

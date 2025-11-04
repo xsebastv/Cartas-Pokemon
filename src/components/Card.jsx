@@ -69,7 +69,7 @@ export default function Card({ character, status, onInvoke, onUninvoke, onUncapt
             )}
             <div className="card-foot">
               <span className="chip-id" aria-label={`ID ${character?.id}`} title={`ID ${character?.id}`}>#{character?.id}</span>
-              <div className="card-actions" style={{display:'flex', gap:8, flexWrap:'wrap'}}>
+              <div className="card-actions">
                 {status === 'Capturado' ? (
                   <button className="btn" onClick={(e)=>{ e.stopPropagation?.(); onUncapture?.(character) }} aria-label={`Desatrapar a ${name}`}>Desatrapar</button>
                 ) : status === 'Invocado' ? (
@@ -106,7 +106,7 @@ export default function Card({ character, status, onInvoke, onUninvoke, onUncapt
             {description && <p className="card-desc">{truncate(description, 120)}</p>}
             <div className="card-foot" style={{justifyContent:'space-between'}}>
               <span className="chip-id" aria-label={`ID ${character?.id}`} title={`ID ${character?.id}`}>#{character?.id}</span>
-              <div style={{display:'flex', gap:8, flexWrap:'wrap'}}>
+              <div className="card-actions">
                 {status === 'Capturado' ? (
                   <button className="btn" onClick={(e)=>{ e.stopPropagation?.(); onUncapture?.(character) }} aria-label={`Desatrapar a ${name}`}>Desatrapar</button>
                 ) : status === 'Invocado' ? (

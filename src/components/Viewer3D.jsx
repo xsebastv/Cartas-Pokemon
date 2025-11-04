@@ -6,7 +6,7 @@ import Loader from './Loader'
 import { gsap } from 'gsap'
 import { primaryTypeThreeColor, TYPE_COLORS } from '../utils/pokemonColors'
 
-// Simple sword-like sound using Web Audio API
+// Sonido simple estilo "espada" usando la Web Audio API
 async function playInvokeSound(){
   try{
     const ctx = new (window.AudioContext || window.webkitAudioContext)()
@@ -46,7 +46,7 @@ export default function Viewer3D({ character, mode = 'catch', onClose, onCapture
     renderer.setSize(size().w, size().h)
     mount.appendChild(renderer.domElement)
 
-  // Scene & Camera
+  // Escena y Cámara
     scene = new THREE.Scene()
     scene.background = null
   // Subtle environment reflections for glossy plastic feel
@@ -66,7 +66,7 @@ export default function Viewer3D({ character, mode = 'catch', onClose, onCapture
     dir.position.set(2,3,2)
     scene.add(dir)
 
-  // Clean background: no grid/axes for a tidier look
+  // Fondo limpio: sin rejilla/ejes para un aspecto más pulcro
 
   // Procedural Pokéball (sphere halves + ring) - only in catch mode
     let centerMat
@@ -130,7 +130,7 @@ export default function Viewer3D({ character, mode = 'catch', onClose, onCapture
       animRef.current.center = center
       animRef.current.centerMat = centerMat
 
-      // Preload flare texture (radial gradient) and create a throw glow sprite attached to the button
+  // Precargar textura de destello (gradiente radial) y crear sprite de brillo en el botón
       const flareTex = new THREE.TextureLoader().load('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256"><radialGradient id="g" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="white" stop-opacity="1"/><stop offset="100%" stop-color="white" stop-opacity="0"/></radialGradient><circle cx="128" cy="128" r="128" fill="url(%23g)"/></svg>')
       const glowMat = new THREE.SpriteMaterial({ map: flareTex, color: 0xfff1aa, transparent:true, opacity:0.0, depthWrite:false, blending: THREE.AdditiveBlending })
       const throwGlow = new THREE.Sprite(glowMat)
@@ -140,7 +140,7 @@ export default function Viewer3D({ character, mode = 'catch', onClose, onCapture
       animRef.current.throwGlow = throwGlow
       animRef.current.flareTex = flareTex
 
-      // Glossy highlight sprite on top hemisphere for a nicer plastic shine
+  // Sprite de brillo en el hemisferio superior para un acabado plástico
   const highlightMat = new THREE.SpriteMaterial({ map: flareTex, color: 0xffffff, transparent:true, opacity:0.16, depthWrite:false, blending: THREE.AdditiveBlending })
       const highlight = new THREE.Sprite(highlightMat)
       highlight.scale.set(0.9, 0.9, 0.9)
@@ -149,9 +149,9 @@ export default function Viewer3D({ character, mode = 'catch', onClose, onCapture
       animRef.current.highlight = highlight
     }
 
-  // Pokemon mesh: prefer a thin 3D slab with front/back textures; fallback to billboard
+  // Malla del Pokémon: preferible una losa 3D delgada con texturas; alternativa: billboard
   let billboard
-  // Prefer high-quality official artwork for the front; fall back to game sprite
+  // Preferir ilustración oficial de alta calidad; alternativa: sprite del juego
   const frontUrl = character?.sprite || character?.sprites?.front_default
   const texLoader = new THREE.TextureLoader()
   const loadTex = (url) => new Promise(resolve => {
@@ -186,7 +186,7 @@ export default function Viewer3D({ character, mode = 'catch', onClose, onCapture
     }
   })()
 
-  // Controls
+  // Controles
     controls = new OrbitControls(camera, renderer.domElement)
     controls.enableDamping = true
     controls.dampingFactor = 0.06

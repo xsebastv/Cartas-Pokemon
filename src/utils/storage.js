@@ -1,4 +1,4 @@
-// Simple persistence helpers for captured/invoked state using localStorage
+// Utilidades sencillas de persistencia (capturados/invocados) usando localStorage
 const KEY = 'pokemonState.v1'
 
 function safeParse(json, fallback){
@@ -33,7 +33,7 @@ export function markInvoked(id){
 export function markCaptured(id){
   const { capturedIds, invokedIds } = loadState()
   capturedIds.add(id)
-  // If captured, consider it also invoked implicitly
+  // Si está capturado, considerarlo también invocado implícitamente
   invokedIds.add(id)
   saveState({ capturedIds, invokedIds })
 }

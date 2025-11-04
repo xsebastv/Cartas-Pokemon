@@ -18,7 +18,7 @@ function truncate(text='', n=140){
 }
 
 export default function Card({ character, status, onInvoke, onUninvoke, onUncapture, onOpenDetail }){
-  // Support both Zelda character and Pokémon shapes (graceful fallback)
+  // Soporta tanto forma de personaje genérico como Pokémon (degradado elegante)
   const name = character?.name || '—'
   const types = character?.types || []
   const race = character?.race
@@ -36,7 +36,7 @@ export default function Card({ character, status, onInvoke, onUninvoke, onUncapt
       '--average-color': primaryTypeHex(types, name)
     }} onClick={onOpenDetail} tabIndex={0} onKeyDown={(e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); onOpenDetail?.() } }}>
       <div className="flip-inner">
-        {/* Front */}
+  {/* Anverso */}
         <div className="flip-front">
           <div className="card-media" style={{
             background: `radial-gradient(300px 200px at 70% 30%, rgba(255,255,255,.15), transparent 60%), ${bg}`
@@ -88,8 +88,8 @@ export default function Card({ character, status, onInvoke, onUninvoke, onUncapt
           </div>
         </div>
 
-        {/* Back */}
-  <div className="flip-back" aria-label={`Reverso de ${name}`} onClick={onOpenDetail} title="Click para ver detalles">
+    {/* Reverso */}
+    <div className="flip-back" aria-label={`Reverso de ${name}`} onClick={onOpenDetail} title="Click para ver detalles">
           <div className="card-media" style={{
             background: `radial-gradient(240px 180px at 70% 30%, rgba(255,255,255,.12), transparent 60%), #33363B`
           }}>

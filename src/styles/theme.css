@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Poppins:wght@400;600;700&display=swap');
 
 :root{
-  /* Clean, readable Pokémon-inspired palette */
+  /* Paleta limpia y legible inspirada en Pokémon */
   --brand-bg:#0b1224; /* deep navy */
   --brand-surface:#131a2c; /* panel */
   --brand-surface-2:#182038; /* header panel */
@@ -14,7 +14,7 @@
   --danger:#ff6b6b;
   --ok:#43d17a;
 
-  /* Typography */
+  /* Tipografía */
   --font-display: 'Baloo 2', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial;
   --font-body: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial;
 }
@@ -23,7 +23,7 @@
 html,body,#root{height:100%}
 body{
   margin:0;
-  /* Simpler background: subtle gradient only */
+  /* Fondo más simple: sólo degradientes sutiles */
   background:
     radial-gradient(900px 600px at 50% -20%, rgba(255,255,255,.06) 0%, transparent 60%),
     radial-gradient(400px 400px at 95% 20%, rgba(227,53,13,.12), transparent 65%),
@@ -70,7 +70,7 @@ h1{
 .header .subtitle{ margin-bottom: 12px }
 .header .filters{ display:flex; gap:8px; flex-wrap:wrap }
 
-/* App header */
+/* Encabezado de la app (legacy) */
 .app-header{ position:sticky; top:0; z-index:30; background:linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.12)), var(--brand-surface-2); border-bottom:1px solid rgba(255,255,255,.08); backdrop-filter: blur(8px); box-shadow: 0 10px 24px rgba(0,0,0,.25); }
 .header-inner{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 24px }
 .brand{ display:flex; align-items:center; gap:10px }
@@ -115,8 +115,8 @@ h1{
   .search input{ min-width: 140px }
 }
 
-/* Redesigned Header */
-.site-header{ position:sticky; top:0; z-index:30; background: radial-gradient(1200px 400px at 50% -30%, rgba(255,255,255,.08), rgba(255,255,255,0) 60%), linear-gradient(180deg, var(--brand-surface-2), rgba(16,24,44, .92)); border-bottom:1px solid rgba(255,255,255,.08); box-shadow: 0 10px 24px rgba(0,0,0,.25); backdrop-filter: blur(8px) }
+/* Encabezado rediseñado */
+.site-header{ position:sticky; top:0; z-index:30; background: radial-gradient(1200px 400px at 50% -30%, rgba(255,255,255,.08), rgba(255,255,255,0) 60%), linear-gradient(180deg, var(--brand-surface-2), rgba(16,24,44, .92)); border-bottom:1px solid rgba(255,255,255,.08); box-shadow: 0 10px 24px rgba(0,0,0,.25); backdrop-filter: blur(8px); transition: box-shadow .2s ease, background .2s ease }
 .nav{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 24px }
 .brand{ display:flex; align-items:center; gap:10px }
 .brand .logo{ width:32px; height:32px; display:grid; place-items:center }
@@ -124,7 +124,7 @@ h1{
 .nav-right{ display:flex; align-items:center; gap:8px; flex-wrap:wrap }
 .badge{ display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; font-size:12px; background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.1); box-shadow: 0 2px 8px rgba(0,0,0,.18) }
 .badge svg{ opacity:.85 }
-.hero{ display:grid; gap:12px; justify-items:center; padding:8px 24px 14px }
+.hero{ display:grid; gap:12px; justify-items:center; padding:8px 24px 14px; overflow:hidden; max-height: 360px; transition: max-height .24s ease, opacity .2s ease, padding .2s ease }
 .tagline{ margin:4px 0 4px; color:var(--brand-muted) }
 .searchbar{ position:relative; width:min(720px, 100%) }
 .search{ display:flex; gap:8px; align-items:center; background:var(--brand-surface); padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,0.08) }
@@ -139,7 +139,8 @@ h1{
 .header-watermark{ pointer-events:none; position:absolute; inset:0; background: radial-gradient(300px 300px at 95% 20%, rgba(227,53,13,.25), rgba(227,53,13,0) 60%), radial-gradient(220px 220px at 5% 80%, rgba(59,76,202,.2), rgba(59,76,202,0) 60%) }
 
 /* Compact header when scrolling */
-.site-header.is-compact .hero{ display:none }
+.site-header.is-compact{ background: radial-gradient(900px 300px at 50% -30%, rgba(255,255,255,.06), rgba(255,255,255,0) 60%), linear-gradient(180deg, rgba(16,24,44, .96), rgba(16,24,44, .94)); box-shadow: 0 12px 28px rgba(0,0,0,.32) }
+.site-header.is-compact .hero{ max-height: 0; opacity:0; padding-top:0; padding-bottom:0; pointer-events:none }
 .site-header.is-compact .nav{ padding:6px 18px }
 .site-header.is-compact .brand .logo{ width:26px; height:26px }
 .site-header.is-compact .brand .wordmark{ font-size: 18px; letter-spacing:.4px }

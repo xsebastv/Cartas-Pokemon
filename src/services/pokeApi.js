@@ -1,7 +1,7 @@
 const BASE = 'https://pokeapi.co/api/v2'
 
 function pickSprite(s){
-  // Preferred order: official-artwork PNG > dream_world SVG > front_default
+  // Orden preferido: official-artwork PNG > dream_world SVG > front_default
   return (
     s?.other?.['official-artwork']?.front_default ||
     s?.other?.dream_world?.front_default ||
@@ -32,7 +32,7 @@ export async function getPokemonList({ limit = 24, offset = 0, signal }={}){
   if(!res.ok) throw new Error('HTTP '+res.status)
   const json = await res.json()
   const results = json?.results || []
-  // Fetch details for each to get sprites/types
+  // Obtener detalles de cada uno para conocer sprites/tipos
   const detailed = await Promise.all(results.map(async r => {
     const d = await getPokemonByNameOrId(r.name, { signal })
     return d
@@ -46,7 +46,7 @@ export async function getPokemonByNameOrId(nameOrId, { signal } = {}){
   if(!res.ok) throw new Error('HTTP '+res.status)
   const p = await res.json()
   const basic = normalizePokemon(p)
-  // Species for flavor text (description)
+  // Especie para texto descriptivo (flavor text)
   try{
     const sres = await fetch(`${BASE}/pokemon-species/${p.id}`, { signal })
     if(sres.ok){

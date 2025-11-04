@@ -10,9 +10,9 @@ export function usePokemon({ initialLimit = 24 } = {}){
   const [error, setError] = useState(null)
   const [hasMore, setHasMore] = useState(true)
   const controllerRef = useRef(null)
-  // Cache for client-side partial search
+  // Caché para búsqueda parcial en el cliente
   const allNamesRef = useRef(null) // string[] | null
-  const matchListRef = useRef([])  // current matched names for pagination when query != '' and not exact
+  const matchListRef = useRef([])  // coincidencias actuales para paginar cuando query != '' y no es exacta
   const searchModeRef = useRef('none') // 'none' | 'exact' | 'partial'
 
   const start = () => {
@@ -29,7 +29,7 @@ export function usePokemon({ initialLimit = 24 } = {}){
     try{
       if(q){
         const ql = q.toLowerCase().trim()
-        // 1) try direct exact name/id
+  // 1) intentar coincidencia directa por nombre/ID
         try{
           const poke = await getPokemonByNameOrId(ql, { signal: c.signal })
           setItems([poke])
@@ -39,8 +39,8 @@ export function usePokemon({ initialLimit = 24 } = {}){
           searchModeRef.current = 'exact'
           return
         }catch(ex){
-          // 2) partial search by name contains
-          // load cache once
+          // 2) búsqueda parcial por nombre que contiene
+          // cargar caché una sola vez
           if(!allNamesRef.current){
             try{
               allNamesRef.current = await getAllPokemonNames({ signal: c.signal })
@@ -100,7 +100,7 @@ export function usePokemon({ initialLimit = 24 } = {}){
       finally{ setLoading(false) }
       return
     }
-    // Normal catalog pagination when no search
+  // Paginación normal del catálogo cuando no hay búsqueda
     if(query) return
     const nextPage = page + 1
     const c = start()
@@ -117,10 +117,10 @@ export function usePokemon({ initialLimit = 24 } = {}){
     }
   }
 
-  // Initial
+  // Inicial
   useEffect(()=>{ loadFirstPage('') }, [])
 
-  // Debounce search; also reset page state and mode
+  // Debounce de la búsqueda; también reinicia estado de página y modo
   useEffect(()=>{
     const id = setTimeout(()=>{ loadFirstPage(query) }, 300)
     return () => clearTimeout(id)

@@ -9,7 +9,7 @@ export const TYPE_COLORS = {
 export function primaryTypeHex(types = [], name = ''){
   const t = Array.isArray(types) && types.length ? String(types[0]).toLowerCase() : ''
   if (TYPE_COLORS[t]) return TYPE_COLORS[t]
-  // fallback: deterministic HSL by name
+  // Alternativa: HSL determinista basado en el nombre
   let h=0; for(const ch of name) h = (h*31 + ch.charCodeAt(0)) % 360
   return `hsl(${h} 70% 55%)`
 }

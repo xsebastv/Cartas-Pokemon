@@ -8,6 +8,7 @@ export function usePokemonNames(){
   const loadedRef = useRef(false)
 
   useEffect(() => {
+    // Cargar una vez la lista de nombres
     if(loadedRef.current) return
     loadedRef.current = true
     const c = new AbortController()

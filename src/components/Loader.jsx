@@ -7,6 +7,7 @@ export default function Loader({ label = 'Cargando' }){
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Baraja de cartas animada
       const cards = gsap.utils.toArray('.loader-card')
       const cardsMidIndex = Math.floor(cards.length / 2)
       const yOffset = 60

@@ -1,6 +1,15 @@
 import React, { useEffect } from 'react'
 import { primaryTypeHex, TYPE_COLORS } from '../utils/pokemonColors'
 
+const STAT_LABELS_ES = {
+  'hp': 'PS',
+  'attack': 'Ataque',
+  'defense': 'Defensa',
+  'special-attack': 'At. Esp.',
+  'special-defense': 'Def. Esp.',
+  'speed': 'Velocidad'
+}
+
 export default function DetailModal({ pokemon, onClose }){
   if(!pokemon) return null
   const { name, id, types = [], description, abilities = [], stats = [], sprite, sprites, height, weight } = pokemon
@@ -57,7 +66,7 @@ export default function DetailModal({ pokemon, onClose }){
               <div className="stats">
                 {stats.map(s => (
                   <div key={s.name} className="stat">
-                    <div className="label">{s.name}</div>
+                    <div className="label">{STAT_LABELS_ES[s.name] || s.name}</div>
                     <div className="bar">
                       <div className="fill" style={{width: `${Math.min(100, Math.round((s.base/150)*100))}%`, background: `linear-gradient(90deg, ${color} 0%, rgba(255,255,255,.6) 100%)`}}/>
                     </div>

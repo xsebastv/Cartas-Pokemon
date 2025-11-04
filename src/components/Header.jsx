@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import PokeballMark from './PokeballMark'
 
 export default function Header({
@@ -12,19 +12,32 @@ export default function Header({
   showing
 }){
   const [compact, setCompact] = useState(false)
+  const compactRef = useRef(false)
 
   useEffect(()=>{
+    // Histeresis para evitar parpadeos al subir/bajar cerca del umbral.
+    // Compactar al pasar COMPACT_AT, expandir sólo si sube por encima de EXPAND_AT.
+    const COMPACT_AT = 180
+    const EXPAND_AT = 80
     let ticking = false
     const onScroll = () => {
       if(ticking) return
       ticking = true
       requestAnimationFrame(()=>{
-        const c = window.scrollY > 60
-        setCompact(prev => (prev !== c ? c : prev))
+        const y = window.scrollY || window.pageYOffset || 0
+        const isCompact = compactRef.current
+        if(!isCompact && y >= COMPACT_AT){
+          compactRef.current = true
+          setCompact(true)
+        }else if(isCompact && y <= EXPAND_AT){
+          compactRef.current = false
+          setCompact(false)
+        }
         ticking = false
       })
     }
     window.addEventListener('scroll', onScroll, { passive: true })
+    // Ejecutar una vez para el estado inicial
     onScroll()
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
